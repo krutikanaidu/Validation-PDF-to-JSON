@@ -1,0 +1,8 @@
+{
+  "reportMissingImports": "warning",
+  "reportMissingModuleSource": "none",
+  "typeCheckingMode": "basic",
+  "ignore": [
+    "**/__pycache__"
+  ]
+}

@@ -1,0 +1,27 @@
+# Form 93 Validator — Surya OCR Edition
+# =======================================
+# Install with:
+#   pip install -r requirements.txt
+#
+# System dependency (for pdftotext + pdf2image):
+#   Ubuntu/Debian : sudo apt install poppler-utils
+#   macOS         : brew install poppler
+#   Windows       : https://github.com/oschwartz10612/poppler-windows/releases
+
+# ── Core ──────────────────────────────────────────────────────
+tabulate>=0.9.0
+
+# ── Surya OCR (replaces Tesseract) ────────────────────────────
+# Deep-learning OCR — significantly more accurate than Tesseract
+# for tabular / government documents.  Downloads ~1-2 GB of model
+# weights on first run (cached in ~/.cache/huggingface/).
+surya-ocr>=0.4.0
+
+# ── PDF → image conversion (used by Surya) ───────────────────
+pdf2image>=1.16.3
+Pillow>=10.0.0
+
+# ── Notes ─────────────────────────────────────────────────────
+# surya-ocr pulls in torch and transformers automatically.
+# For GPU acceleration (strongly recommended for large batches):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
