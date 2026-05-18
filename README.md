@@ -49,23 +49,5 @@ print_report() produces a terminal report with ANSI color coding (auto-disabled 
 
 The Runner (validate_uploads_surya.py)
 This script adds auto-detection on top of the engine. It scans ./data/ (falling back to the current directory) for .pdf and .json files. If multiple files of a type are found, it prompts the user to choose. It also monkey-patches extract_pdf_text_surya to inject the --dpi argument, which is a pragmatic (if slightly hacky) way to thread a CLI parameter into a library function without changing its signature.
+<img width="402" height="500" alt="Screenshot 2026-05-18 111321" src="https://github.com/user-attachments/assets/0319dd68-c20c-46f5-9eb7-5e03f30e33f5" />
 
-Data Flow Summary
-PDF file                      JSON file
-    │                              │
-    ▼                              ▼
-[pdfplumber / pdftotext / Surya]  load_json()
-    │                              │
-    ▼                              ▼
-pdf_records (dict)         json_records (list)
-    │                              │
-    └──────────┬───────────────────┘
-               ▼
-    standalone_checks()   ← JSON-only rules
-    compare()             ← cross-reference
-               │
-               ▼
-    print_report() + save_csv()
-               │
-               ▼
-    exit(0) pass / exit(1) fail
